@@ -7,16 +7,22 @@ import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 import CartIcon from './CartIcon';
+import { ProtectSession } from '@/Lib/utils/ProtectSession';
 
 const UserButton = async () => {
     const session = await auth();
-    const user: User = {
-        id: session?.user.id,
-        username: session?.user.name,
-        email: session?.user.email
-    };
+    
+    const userData = () => {
+        ProtectSession(session)
+        const user: User = {
+            id: session?.user.id,
+            username: session?.user.name,
+            email: session?.user.email
+        };
+        return user;
+    }
 
-    const { username, email } = handleJSON(user);
+    const { username, email } = handleJSON(userData);
 
     return (
         <div className={`flexCenter gap-3 max-md:p-1 max-md:rounded-xl max-md:w-[85%] ${session?.user && 'max-md:bg-green-800/30'}`}>
