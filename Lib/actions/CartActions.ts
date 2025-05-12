@@ -5,10 +5,13 @@ import { handleError } from "../utils/HandleResponse";
 import { auth } from "../auth";
 import prisma from "../prisma";
 import { calculateTotalPrice } from "../utils/HandleTotalPrice";
+import { ProtectSession } from "../utils/ProtectSession";
 
 export const getUserCart = async () => {
     try {
         const session = await auth();
+
+        ProtectSession(session);
         const user = await prisma.user.findUnique({
             where: {
                 email: session?.user.email as string
@@ -74,7 +77,7 @@ export const RemoveItemFromCart = async (productId: string) => {
     try {
         const cart = await getUserCart();
 
-        const itemToRemove = cart?.cartItems.find(item => item.productId.toString() === productId);
+        const itemToRemove = cart?.cartItems.find((item: CartItemType) => item.productId.toString() === productId);
 
         if (!itemToRemove) throw new Error('Cart item not found');
 

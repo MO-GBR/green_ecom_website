@@ -149,3 +149,14 @@ export type PageProps = {
     params: Promise<{ id: string, category: string, resetToken: string }>
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 };
+
+// ====== AUTH JS TYPES
+export type AuthSession = {
+    user: {
+        id: string
+        name: string
+        email: string
+        image: string
+    },
+    expires: string
+}
