@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Order" ALTER COLUMN "buyerId" DROP NOT NULL,
+ALTER COLUMN "stripeId" DROP NOT NULL;
