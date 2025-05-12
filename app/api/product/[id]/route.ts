@@ -3,10 +3,9 @@ import prisma from "@/Lib/prisma";
 
 export const GET = async (
 	req: NextRequest,
-	{ params }: { params: { id: string } }
+	context: { params: { id: string } }
 ) => {
-	const routeParams = await params;
-    const { id } = routeParams;
+	const { id } = context.params;
 
     const product = await prisma.product.findUnique({
         where: {
