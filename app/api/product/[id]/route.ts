@@ -1,10 +1,10 @@
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/Lib/prisma";
 
 export const GET = async (
-	req: Request,
+	req: NextRequest,
 	{ params }: { params: { id: string } }
 ) => {
-	const res = Response;
 	const routeParams = await params;
     const { id } = routeParams;
 
@@ -14,5 +14,5 @@ export const GET = async (
         }
     });
 
-	return res.json({ product });
+	return NextResponse.json({ product });
 };
