@@ -1,12 +1,10 @@
 import CartActionsHandler from '@/components/CartActionsHandler';
-import QuantityHandler from '@/components/QuantityHandler';
-import { AddItemToCart, getUserCart } from '@/Lib/actions/CartActions';
+import { getUserCart } from '@/Lib/actions/CartActions';
 import { auth } from '@/Lib/auth';
 import prisma from '@/Lib/prisma';
 import { handleJSON } from '@/Lib/utils/HandleResponse';
-import { useQuantityStore } from '@/Lib/zustand/Quantity';
 import Products from '@/sections/Products';
-import { CartItemType, PageProps, Product } from '@/types'
+import { PageProps, Product } from '@/types'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -28,7 +26,7 @@ const ProductPage = async ({ params }: PageProps) => {
         }
     });
 
-    const relatedProducts: Product[] = AllProductsInCategory.filter(p => p.id !== id);
+    const relatedProducts: Product[] = AllProductsInCategory.filter((p: Product) => p.id !== id);
 
     const discount: number = Math.round(price + price / 2);
 
