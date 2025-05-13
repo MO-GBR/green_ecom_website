@@ -33,3 +33,5 @@ export const formatLineItems = (userId: string, price: number) => {
         }
     ];
 };
+
+export const formatterNumber = new Intl.NumberFormat('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });

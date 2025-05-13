@@ -8,7 +8,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { OrderType } from '@/types';
 import { CheckoutOrder } from '@/Lib/actions/OrderAction';
 import { CurrentUser } from '@/Lib/utils/HandleCurrentUser';
-import { formatLineItems } from '@/Lib/utils/Format';
+import { formatLineItems, formatterNumber } from '@/Lib/utils/Format';
 import { handleJSON } from '@/Lib/utils/HandleResponse';
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
@@ -20,7 +20,8 @@ const OrderSummary = ({ userId }: { userId: string }) => {
     console.log(items);
 
     const taxes: number = totalPrice / 50;
-    const totalAmount: number = totalPrice + taxes;
+    
+    const totalAmount: number = Number(formatterNumber.format(totalPrice + taxes));
 
     const jsonItems = handleJSON(items);
 

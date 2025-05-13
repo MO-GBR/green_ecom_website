@@ -36,9 +36,17 @@ export const POST = async (req: Request) => {
         };
 
         try {
+            const user = await prisma.user.findUnique({
+                where: {
+                    id: session.metadata?.buyerId
+                },
+                include: {
+                    cart: true
+                }
+            });
             await prisma.cartItem.deleteMany({
                 where: {
-                    cartId: session.metadata?.cartId
+                    cartId: user?.cart?.id
                 }
             });
         } catch (error) {
