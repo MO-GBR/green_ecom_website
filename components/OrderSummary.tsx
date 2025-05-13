@@ -20,8 +20,10 @@ const OrderSummary = ({ userId }: { userId: string }) => {
     console.log(items);
 
     const taxes: number = totalPrice / 50;
-    
-    const totalAmount: number = Number(formatterNumber.format(totalPrice + taxes));
+
+    const totalAmount: number = totalPrice + taxes;
+
+    const viewPrice: number = Number(formatterNumber.format(totalPrice + taxes));
 
     const jsonItems = handleJSON(items);
 
@@ -68,7 +70,7 @@ const OrderSummary = ({ userId }: { userId: string }) => {
             </div>
             <div className='flexBetween'>
                 <p className='font-semibold'>Total Amount:</p>
-                <p className='font-semibold'>${totalAmount}</p>
+                <p className='font-semibold'>${viewPrice}</p>
             </div>
             <button className='greenBtn' type='button' onClick={onCheckout} role='link'>
                 Place Order

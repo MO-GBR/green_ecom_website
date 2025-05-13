@@ -27,7 +27,7 @@ export const formatLineItems = (userId: string, price: number) => {
             price_data: {
                 currency: 'usd',
                 product_data: { name: `This order made by ${userId}` },
-                unit_amount: price * 100,
+                unit_amount: Math.round(price * 100),
             },
             quantity: 1,
         }
