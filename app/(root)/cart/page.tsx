@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Cart from '@/components/Cart';
 import OrderSummary from '@/components/OrderSummary'
 import { CurrentUser } from '@/Lib/utils/HandleCurrentUser';
