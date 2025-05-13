@@ -1,9 +1,6 @@
-export const dynamic = 'force-dynamic';
-
-import { auth, signOut } from '@/Lib/auth'
+import { auth } from '@/Lib/auth'
 import { handleJSON } from '@/Lib/utils/HandleResponse';
 import { User } from '@/types'
-import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 import CartIcon from './CartIcon';

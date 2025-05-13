@@ -105,22 +105,6 @@ export const LoginUser = async (
     }
 };
 
-export const LoginUser_Google = async (
-    prevState: ActionState | null | undefined,
-    formData: FormData
-): Promise<ActionState> => {
-    try {
-        await signIn("google");
-
-        console.log("signed in successfuly");
-        return { success: true, message: 'Welcome' };
-    } catch (error) {
-        const credentialsError = error as CredentialsSignin;
-        handleError(credentialsError);
-        return { success: false, message: 'Unexpected error occurred' };
-    }
-};
-
 export const SendResetPasswordEmail = async (
     prevState: ActionState | null | undefined,
     formData: FormData

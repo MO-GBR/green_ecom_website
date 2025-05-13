@@ -30,7 +30,7 @@ const ProductPage = async ({ params }: PageProps) => {
 
     const discount: number = Math.round(price + price / 2);
 
-    const cart = await getUserCart();
+    const cart = await getUserCart() || { id: '' };
 
     const cartItem: { cartId: string, productId: string } = {
         cartId: cart?.id as string,

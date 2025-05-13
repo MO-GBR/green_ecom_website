@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/Button'
-import React, { useActionState, useState, useEffect } from 'react'
+import React, { useActionState, useEffect } from 'react'
 import { toast } from "react-hot-toast";
 import { ActionState } from '@/types';
 import { RegisterUser } from '@/Lib/actions/UserActions';

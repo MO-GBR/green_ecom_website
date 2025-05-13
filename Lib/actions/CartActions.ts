@@ -11,7 +11,10 @@ export const getUserCart = async () => {
     try {
         const session = await auth();
 
+        if (!session?.user?.email) return null;
+
         ProtectSession(session);
+
         const user = await prisma.user.findUnique({
             where: {
                 email: session?.user.email as string
@@ -24,7 +27,6 @@ export const getUserCart = async () => {
                 }
             }
         });
-        console.log('x-------x', user?.cart);
         return user?.cart;
     } catch (error) {
         handleError(error);

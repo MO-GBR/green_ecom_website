@@ -3,7 +3,7 @@ import prisma from "@/Lib/prisma";
 
 export const main = async () => {
     // CRUD
-    // const products = await prisma.product.createMany({
+    // await prisma.product.createMany({
     //     data: PRODUCTS
     // });
     console.log('Prisma Process Done !!!');
