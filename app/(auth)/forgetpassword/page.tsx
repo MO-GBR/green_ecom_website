@@ -7,12 +7,6 @@ import { ActionState } from '@/types';
 import { SendResetPasswordEmail } from '@/Lib/actions/UserActions';
 
 const ForgetPassword = () => {
-    const [ hasMounted, setHasMounted ] = useState(false);
-
-    useEffect(() => {
-        setHasMounted(true);
-    }, []);
-
     const intialState: ActionState = {
         success: false,
         message: ''

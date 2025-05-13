@@ -7,12 +7,6 @@ import { ActionState } from '@/types';
 import { RegisterUser } from '@/Lib/actions/UserActions';
 
 const SignUserUp = () => {
-    const [ hasMounted, setHasMounted ] = useState(false);
-    
-    useEffect(() => {
-        setHasMounted(true);
-    }, []);
-    
     const intialState: ActionState = {
         success: false,
         message: ''
