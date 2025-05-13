@@ -32,7 +32,7 @@ const OrderSummary = ({ userId }: { userId: string }) => {
                 userId,
                 address,
                 items: formatLineItems(userId, totalAmount),
-                orderList: jsonItems
+                orderList: JSON.stringify(jsonItems)
             })
         });
         const data = await res.json();
