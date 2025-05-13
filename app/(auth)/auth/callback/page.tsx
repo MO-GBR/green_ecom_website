@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import ClientCartSync from "@/components/ClientCartSync";
 import { CurrentUser } from "@/Lib/utils/HandleCurrentUser";
 import { redirect } from "next/navigation";
