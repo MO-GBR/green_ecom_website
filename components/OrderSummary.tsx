@@ -9,6 +9,7 @@ import { OrderType } from '@/types';
 import { CheckoutOrder } from '@/Lib/actions/OrderAction';
 import { CurrentUser } from '@/Lib/utils/HandleCurrentUser';
 import { formatLineItems } from '@/Lib/utils/Format';
+import { handleJSON } from '@/Lib/utils/HandleResponse';
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 
@@ -21,6 +22,8 @@ const OrderSummary = ({ userId }: { userId: string }) => {
     const taxes: number = totalPrice / 50;
     const totalAmount: number = totalPrice + taxes;
 
+    const jsonItems = handleJSON(items);
+
     const onCheckout = async () => {
         const res = await fetch('/api/create-checkout-session', {
             method: 'POST',
@@ -29,7 +32,7 @@ const OrderSummary = ({ userId }: { userId: string }) => {
                 userId,
                 address,
                 items: formatLineItems(userId, totalAmount),
-                orderList: items
+                orderList: jsonItems
             })
         });
         const data = await res.json();
