@@ -6,10 +6,10 @@ import { LoginUser } from '@/Lib/actions/UserActions'
 import { toast } from "react-hot-toast";
 import { ActionState } from '@/types';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { useCartStore } from '@/Lib/zustand/Cart';
+import { useRouter } from 'next/navigation';
 
 const SignInForm = () => {
+    const router = useRouter();
     const intialState: ActionState = {
         success: false,
         message: ''
@@ -23,13 +23,8 @@ const SignInForm = () => {
         }
     }, [state]);
 
-    const { setCart } = useCartStore();
-
     useEffect(() => {
-        if(state.success) {
-            setCart(state.data.cart);
-            redirect("/");
-        }
+        if(state.success) router.push("/auth/callback");
     }, [state]);
 
     return (

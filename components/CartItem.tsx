@@ -4,14 +4,7 @@ import { RemoveItemFromCart } from '@/Lib/actions/CartActions';
 import { useCartStore } from '@/Lib/zustand/Cart';
 import { Product } from '@/types';
 import Image from 'next/image'
-import React, { useState, useEffect } from 'react'
-
-type CartItemProps = {
-    img: string
-    name: string
-    quantity: number
-    price: number
-};
+import React from 'react'
 
 const options = Array(10).fill(null);
 

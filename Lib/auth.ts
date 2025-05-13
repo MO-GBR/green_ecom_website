@@ -78,7 +78,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return session
         },
         signIn: async ({ user, account }) => {
-            if(account?.provider === "google"){
+            if(account?.provider === "google") {
                 const { email, name, id } = user;
                 const existingUser = await prisma.user.findUnique({
                     where: {

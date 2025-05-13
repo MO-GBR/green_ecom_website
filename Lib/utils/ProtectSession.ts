@@ -5,4 +5,4 @@ export function ProtectSession(session: Session | null): asserts session is Sess
     if (!session || !session.user || !session.user.email) {
       throw new Error("Unauthorized: Missing user email in session");
     }
-}
+};

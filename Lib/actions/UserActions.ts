@@ -6,10 +6,11 @@ import { ForgetPasswordSchema, LoginSchema, RegisterSchema, ResetPasswordSchema 
 import prisma from "../prisma";
 import { getResetPasswordToken, hashPassword, resetTokenValue } from "../utils/HandlePassword";
 import { CredentialsSignin } from 'next-auth';
-import { signIn } from "../auth";
+import { auth, signIn } from "../auth";
 import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { SendEmail } from "../utils/HandleEmail";
+import { ProtectSession } from "../utils/ProtectSession";
 
 export const RegisterUser = async (
     prevState: ActionState | null | undefined,
@@ -90,27 +91,29 @@ export const LoginUser = async (
         };
 
         await signIn("credentials", {
-            redirect: false,
-            callbackUrl: "/",
             email,
-            password
-        });
-
-        const user = await prisma.user.findUnique({
-            where: {
-                email,
-            },
-            include: {
-                cart: {
-                    include: {
-                        cartItems: true
-                    }
-                }
-            }
+            password,
+            redirect: false
         });
 
         console.log("signed in successfuly");
-        return { success: true, message: 'Done', data: user};
+        return { success: true, message: 'Welcome' };
+    } catch (error) {
+        const credentialsError = error as CredentialsSignin;
+        handleError(credentialsError);
+        return { success: false, message: 'Unexpected error occurred' };
+    }
+};
+
+export const LoginUser_Google = async (
+    prevState: ActionState | null | undefined,
+    formData: FormData
+): Promise<ActionState> => {
+    try {
+        await signIn("google");
+
+        console.log("signed in successfuly");
+        return { success: true, message: 'Welcome' };
     } catch (error) {
         const credentialsError = error as CredentialsSignin;
         handleError(credentialsError);

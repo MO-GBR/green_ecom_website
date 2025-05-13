@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 
 const SignUserIn = async () => {
     const session = await auth();
-    if (session?.user) redirect("/");
+    if (session?.user) redirect("/auth/callback");
 
     return (
         <div className='allScreen flex-col gap-2'>
