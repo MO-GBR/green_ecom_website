@@ -25,7 +25,7 @@ const SignInForm = () => {
 
     useEffect(() => {
         if(state.success) router.push("/auth/callback");
-    }, [state]);
+    }, [state, router]);
 
     return (
         <form className='AuthContainer' action={formAction}>
