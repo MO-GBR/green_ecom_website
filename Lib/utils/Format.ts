@@ -20,3 +20,16 @@ export const formatPrice = (price: number) => {
 
     return subCurrencyPrice(formattedPrice);
 };
+
+export const formatLineItems = (userId: string, price: number) => {
+    return [
+        {
+            price_data: {
+                currency: 'usd',
+                product_data: { name: `This order made by ${userId}` },
+                unit_amount: price * 100,
+            },
+            quantity: 1,
+        }
+    ];
+};

@@ -42,7 +42,7 @@ const ProductPage = async ({ params }: PageProps) => {
             <div className='flex justify-center gap-10 items-start w-full max-md:flex-col'>
                 <div className='flex flex-col max-md:items-center max-md:w-full'>
                     <div className='flex max-md:text-sm'>
-                        <Link href='/'>Home</Link>/<Link href='/products/all'>Products</Link>/<Link href={`/products/${category}`}>{category}</Link>/<p className='text-green-600'>Potatoes 500g</p>
+                        <Link href='/'>Home</Link>/<Link href='/products/all'>Products</Link>/<Link href={`/products/${category}`}>{category}</Link>/<p className='text-green-600'>{title} 500g</p>
                     </div>
                     <div className='p-5 border border-gray-500'>
                         <Image src={img} alt={title} width={400} height={400} className='max-md:w-[200px]' />

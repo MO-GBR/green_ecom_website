@@ -7,33 +7,33 @@ import React, { useEffect, useState } from 'react'
 import { loadStripe } from '@stripe/stripe-js';
 import { OrderType } from '@/types';
 import { CheckoutOrder } from '@/Lib/actions/OrderAction';
+import { CurrentUser } from '@/Lib/utils/HandleCurrentUser';
+import { formatLineItems } from '@/Lib/utils/Format';
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 
-const OrderSummary = () => {
-    const { totalPrice } = useCartStore();
+const OrderSummary = ({ userId }: { userId: string }) => {
+    const { totalPrice, items } = useCartStore();
     const [ address, setAddress ] = useState('');
+
+    console.log(items);
 
     const taxes: number = totalPrice / 50;
     const totalAmount: number = totalPrice + taxes;
 
-    useEffect(() => {
-        const query = new URLSearchParams(window.location.search);
-        if (query.get('success')) {
-            console.log('Order placed! You will receive an email confirmation.');
-        };
-        if (query.get('canceled')) {
-            console.log("Order canceled -- continue to shop around and checkout when you're ready.");
-        }
-    }, []);
-
     const onCheckout = async () => {
-        const order: OrderType = {
-            amount: totalAmount,
-            address,
-        };
-
-        await CheckoutOrder(order);
+        const res = await fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                userId,
+                address,
+                items: formatLineItems(userId, totalAmount),
+                orderList: items
+            })
+        });
+        const data = await res.json();
+        if (data.url) window.location.href = data.url;
     };
     return (
         <div className='OrderSummary'>
@@ -66,11 +66,10 @@ const OrderSummary = () => {
                 <p className='font-semibold'>Total Amount:</p>
                 <p className='font-semibold'>${totalAmount}</p>
             </div>
-            <form action={onCheckout} method='post'>
-                <button className='greenBtn' type='submit' role='link'>
-                    Place Order
-                </button>
-            </form>
+            <button className='greenBtn' type='button' onClick={onCheckout} role='link'>
+                Place Order
+            </button>
+
         </div>
     )
 }
