@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link';
 
-const SearchProduct = () => {
+const SearchContainer = () => {
     const [ searchText, setSearchText ] = useState('');
     const [ products, setProducts ] = useState<any[]>([]);
     const [ focus, setFocus ] = useState(false);
@@ -31,7 +31,7 @@ const SearchProduct = () => {
     });
 
     return (
-        <div className='search flexBetween'>
+        <div className='searchMobile flexBetween'>
             <input
                 placeholder='Search'
                 className='text-white placeholder:text-white'
@@ -68,4 +68,18 @@ const SearchProduct = () => {
     )
 }
 
-export default SearchProduct
+const MobileSearch = () => {
+    const [ mobile, setMobile ] = useState(false);
+    return (
+        <>
+            <div className='p-1 border border-white rounded-full hidden max-md:block absolute top-2 right-2' onClick={() => setMobile(!mobile)}>
+                <Image src='/icons/search.svg' alt='search' height={30} width={30} />
+            </div>
+            {
+                mobile && <SearchContainer />
+            }
+        </>
+    )
+}
+
+export default MobileSearch

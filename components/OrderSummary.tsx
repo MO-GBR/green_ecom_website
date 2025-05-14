@@ -75,7 +75,6 @@ const OrderSummary = ({ userId }: { userId: string }) => {
             <button className='greenBtn' type='button' onClick={onCheckout} role='link'>
                 Place Order
             </button>
-
         </div>
     )
 }

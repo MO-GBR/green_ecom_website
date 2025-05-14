@@ -35,7 +35,7 @@
 
 @layer components {
   .AuthContainer {
-    @apply bg-white h-fit p-5 w-[30vw] shadow-2xl rounded-2xl border border-green-200 flex justify-center items-center flex-col;
+    @apply bg-white h-fit p-5 w-fit shadow-2xl rounded-2xl border border-green-200 flex justify-center items-center flex-col;
   }
 
   .OrderSummary {
@@ -77,6 +77,10 @@
     @apply w-[70%] p-3 m-2 rounded-full border border-white max-md:hidden;
   }
 
+  .searchMobile {
+    @apply w-[70%] p-3 m-2 rounded-full border border-white max-md:absolute top-28;
+  }
+
   /* Button */
   .GreenButton {
     @apply flex justify-center gap-5 p-3 items-center bg-green-800 text-green-100 text-xl w-fit mt-5 rounded-full;
@@ -104,6 +108,6 @@
 
   /* Sign Up */
   .AuthInput {
-    @apply border border-gray-500 rounded-xl p-3 w-[20rem];
+    @apply border border-gray-500 rounded-xl p-3 w-fit;
   }
 }

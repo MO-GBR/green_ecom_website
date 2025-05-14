@@ -5,8 +5,12 @@ import React, { useActionState, useEffect } from 'react'
 import { toast } from "react-hot-toast";
 import { ActionState } from '@/types';
 import { RegisterUser } from '@/Lib/actions/UserActions';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const SignUserUp = () => {
+    const router = useRouter();
+
     const intialState: ActionState = {
         success: false,
         message: ''
@@ -19,6 +23,10 @@ const SignUserUp = () => {
             state.success ? toast.success(state.message) : toast.error(state.message);
         }
     }, [state]);
+
+    useEffect(() => {
+        if (state?.success) router.push('/signin');
+    }, [state, router]);
 
     return (
         <div className='allScreen'>
@@ -53,7 +61,7 @@ const SignUserUp = () => {
                 </label>
                 <div className='flexCenter gap-1'>
                     <p>Alread have account?</p>
-                    <p className='text-green-600'>Sign in</p>
+                    <Link href='/signin' className='text-green-600'>Sign in</Link>
                 </div>
                 <Button text={ isPending ? 'Processing ...' : 'Create Account' } type='submit' icon='/icons/signup.svg' />
             </form>
