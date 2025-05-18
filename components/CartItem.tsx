@@ -23,9 +23,9 @@ const CartItem = ({ product, quantity }: { product: Product, quantity: number })
     return (
         <div className='flexBetween w-full max-md:justify-center mt-2'>
             <div className='flexCenter'>
-                <div className='border p-2 border-gray-400 rounded-lg flexCenter'>
+                <div className='border p-2 border-gray-400 rounded-lg flex justify-end items-start'>
                     <Image src={product.img} alt={product.title} width={80} height={80} className='max-md:w-[250px]' />
-                    <Image src='/icons/red-x.svg' alt='close' width={25} height={25} className='hidden max-md:block absolute w-[30px] mb-12 ml-12 cursor-pointer' onClick={handleClick} />
+                    <Image src='/icons/red-x.svg' alt='close' width={25} height={25} className='hidden max-md:block absolute w-[30px] cursor-pointer' onClick={handleClick} />
                 </div>
                 <div className='flex flex-col ml-2'>
                     <p className='font-bold'>{product.title}</p>

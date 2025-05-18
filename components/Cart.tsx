@@ -5,6 +5,7 @@ import { useCartStore } from '@/Lib/zustand/Cart';
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import CartItem from './CartItem';
+import Link from 'next/link';
 
 const Cart = () => {
     const { items, loading, clearCart } = useCartStore();
@@ -53,10 +54,10 @@ const Cart = () => {
                     ))
                 }
             </div>
-            <div className='flex items-center mt-10'>
+            <Link href="/" className='flex items-center mt-10'>
                 <Image src='/icons/green-arrow.svg' alt='back to shopping' width={25} height={25} />
                 <p className='text-[#75FB4C] font-bold'>Continue Shopping</p>
-            </div>
+            </Link>
         </div>
     )
 }

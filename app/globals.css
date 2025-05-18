@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-}
-
 @layer base {
   * {
     @apply p-0 m-0 box-border;
@@ -13,7 +10,7 @@
   }
 
   header {
-    @apply w-full h-16 flex justify-center items-center fixed z-1 top-0 left-0 right-0 max-md:flex-col max-md:h-32 max-md:gap-1;
+    @apply w-full h-fit pb-2 flex justify-center items-center fixed z-1 top-0 left-0 right-0 max-md:flex-col max-md:h-32 max-md:gap-1;
   }
 
   img {

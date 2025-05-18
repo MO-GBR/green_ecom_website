@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from 'motion/react';
 import { Product } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link';
@@ -8,7 +11,7 @@ const ProductCard = ({ productData }: { productData: Product }) => {
     const productTitle = category !== 'drinks' ? `${title} 500g` : title;
     const discount: number = Math.round(price + price / 2);
     return (
-        <div className='productCard'>
+        <motion.div initial={{ scale: 1 }} whileHover={{ scale: 1.1 }} className='productCard'>
             <Image src={img} width={90} height={90} alt={title} />
             <p className='w-full text-left ml-5 text-sm text-gray-700'>{category}</p>
             <p className='w-full text-left ml-5 font-bold'>{productTitle}</p>
@@ -25,7 +28,7 @@ const ProductCard = ({ productData }: { productData: Product }) => {
                 </div>
                 <Link href={`/product/${id}`} className='p-2 border border-green-400 bg-green-200 font-bold mr-2 rounded-xl'>Details</Link>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
