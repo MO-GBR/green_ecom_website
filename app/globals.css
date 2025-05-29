@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    @apply p-0 m-0 box-border;
+  }
+
+  body {
+    @apply overflow-x-hidden;
+  }
+
+  header {
+    @apply w-full h-fit pb-2 flex justify-center items-center fixed z-1 top-0 left-0 right-0 max-md:flex-col max-md:h-32 max-md:gap-1;
+  }
+
+  img {
+    @apply max-w-full h-auto object-cover;
+  }
+
+  input {
+    @apply border-0 outline-0 w-[90%];
+  }
+
+  button {
+    @apply border-0 outline-0;
+  }
+
+  footer {
+    @apply relative left-0 right-0 bottom-0 bg-green-100 border-t border-t-gray-200 w-full h-[18rem] flex justify-center items-center flex-col max-md:h-[25rem];
+  }
+}
+
+@layer components {
+  .AuthContainer {
+    @apply bg-white h-fit p-5 w-fit shadow-2xl rounded-2xl border border-green-200 flex justify-center items-center flex-col;
+  }
+
+  .OrderSummary {
+    @apply bg-gray-200 w-[40vw] h-[75vh] p-7 shadow mx-11 max-md:mx-2 max-md:w-[80vw];
+  }
+}
+
+@layer utilities {
+  /* ======== Utilities ======== */
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
+
+  .flexAround {
+    @apply flex items-center justify-around;
+  }
+
+  .flexBetween {
+    @apply flex items-center justify-between;
+  }
+
+  .allScreen {
+    @apply flex justify-center items-center w-full h-screen;
+  }
+  /* ======== Components ======== */
+  .greenBtn {
+    @apply w-full p-3 text-white bg-green-500 font-semibold mt-3 max-md:w-[90%];
+  }
+
+  .grayBtn {
+    @apply w-full p-3 bg-gray-300 font-semibold mt-3 max-md:w-[90%];
+  }
+  /* Header */
+  .logo {
+    @apply text-white font-bold text-4xl;
+  }
+
+  .search {
+    @apply w-[70%] p-3 m-2 rounded-full border border-white max-md:hidden;
+  }
+
+  .searchMobile {
+    @apply w-[70%] p-3 m-2 rounded-full border border-white max-md:absolute top-28;
+  }
+
+  /* Button */
+  .GreenButton {
+    @apply flex justify-center gap-5 p-3 items-center bg-green-800 text-green-100 text-xl w-fit mt-5 rounded-full;
+  }
+
+  /* Explore */
+  .exploreCard {
+    @apply shadow rounded-2xl p-2 w-[300px] h-[350px] max-md:w-[250px] flex justify-end items-center flex-col mb-5;
+  }
+
+  /* Products */
+  .productCard {
+    @apply border border-gray-300 shadow h-[250px] w-[250px] rounded-2xl flex justify-center items-center flex-col;
+  }
+
+  /* ======== Pages ======== */
+  /* Home */
+  .green {
+    @apply absolute font-bold text-green-200 text-8xl left-10 top-30 max-md:hidden;
+  }
+
+  .hero-caption {
+    @apply absolute left-10 top-100 text-white font-bold text-3xl max-md:hidden;
+  }
+
+  /* Sign Up */
+  .AuthInput {
+    @apply border border-gray-500 rounded-xl p-3 w-fit;
+  }
+}
